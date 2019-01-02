@@ -80,8 +80,8 @@ class Projects extends Component {
         <SDescriptionWrapper>
           <STitle>{title}</STitle>
           <SDescription>{description}</SDescription>
-          {link.github && <SLink href={link}>Github link</SLink>}
-          {link.website && <SLink href={link}>{link.website}</SLink>}
+          {link.github && <SLink href={link.github}>Github link</SLink>}
+          {link.website && <SLink href={link.website}>{link.website}</SLink>}
         </SDescriptionWrapper>
       </SWrapperRow>
     );
