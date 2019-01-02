@@ -5,7 +5,7 @@ import colors from '../../../constants/colors';
 import Hypertube from '../../../assets/images/hypertube.gif';
 import Matcha from '../../../assets/images/matcha.gif';
 import Chatbot from '../../../assets/images/chatbot.gif';
-import { SDescription, SLink, STitle } from '../../../styles/common';
+import { tablets, STitle, SDescription, SLink } from '../../../styles/common';
 
 const ProjectsList = [
   {
@@ -43,40 +43,13 @@ const ProjectsList = [
   },
 ];
 
-const SWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  width: 100%;
-  height: auto;
-  background-color: ${colors.white};
-  padding-top: 50px;
-`;
-
-const SWrapperRow = styled.div`
-  display: flex;
-  flex-direction: row;
-  width: 80%;
-  margin-bottom: 50px;
-`;
-
-const SProjectImage = styled.img`
-  width: 40vw;
-  height: 26vw;
-`;
-
-const SDescriptionWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-left: 50px;
-`;
-
 class Projects extends Component {
   renderProjects(title, img, link, description, li) {
     return (
       <SWrapperRow key={description}>
-        <SProjectImage src={img} alt={description} />
+        <SImageWrapper>
+          <SProjectImage src={img} alt={description} />
+        </SImageWrapper>
         <SDescriptionWrapper>
           <STitle>{title}</STitle>
           <SDescription>{description}</SDescription>
@@ -105,3 +78,46 @@ class Projects extends Component {
 }
 
 export default Projects;
+
+const SWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  height: auto;
+  background-color: ${colors.white};
+  padding-top: 50px;
+`;
+
+const SWrapperRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  margin-bottom: 50px;
+  ${tablets(`
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+  `)};
+`;
+
+const SImageWrapper = styled.div`
+  flex: 1;
+`;
+
+const SProjectImage = styled.img`
+  width: 90%;
+  margin-left: 5%;
+`;
+
+const SDescriptionWrapper = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-left: 50px;
+  ${tablets(`
+    margin-left: 0;
+    text-align: center;
+  `)};
+`;
