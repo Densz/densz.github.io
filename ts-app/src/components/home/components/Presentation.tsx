@@ -1,17 +1,23 @@
-import React, { Component } from 'react';
-import styled from 'styled-components';
-import colors from '../../../constants/colors';
+import * as React from 'react';
 import posed from 'react-pose';
-import Photo from '../../../assets/images/profile.jpg';
-import { tablets, STitle } from '../../../styles/common';
+import styled from 'src/styles/styled-components';
 
-class Presentation extends Component {
-  state = {
+import Photo from '../../../assets/images/profile.jpg';
+import colors from '../../../constants/colors';
+import { STitle, tablets } from '../../../styles/common';
+
+interface IState {
+  imageAnimation: boolean;
+  textAnimation: boolean;
+}
+
+class Presentation extends React.Component<{}, IState> {
+  public state = {
     imageAnimation: false,
     textAnimation: false,
   };
 
-  componentDidMount = () => {
+  public componentDidMount = () => {
     this.setState(
       state => ({
         ...state,
@@ -28,7 +34,7 @@ class Presentation extends Component {
     );
   };
 
-  render() {
+  public render() {
     const { imageAnimation, textAnimation } = this.state;
 
     return (
@@ -50,7 +56,7 @@ class Presentation extends Component {
 
 export default Presentation;
 
-const imageDrops = {
+const imagePose = {
   hidden: {
     y: -400,
     opacity: 0,
@@ -64,7 +70,7 @@ const imageDrops = {
   },
 };
 
-const textAnimation = {
+const textPose = {
   hidden: {
     width: 0,
   },
@@ -89,7 +95,7 @@ const SWrapper = styled.div`
   `)}
 `;
 
-const AImage = styled(posed.img(imageDrops))`
+const AImage = styled(posed.img(imagePose))`
   width: 300px;
   height: 300px;
   border-radius: 50%;
@@ -98,7 +104,7 @@ const AImage = styled(posed.img(imageDrops))`
   `)}
 `;
 
-const ATextWrapper = styled(posed.div(textAnimation))`
+const ATextWrapper = styled(posed.div(textPose))`
   overflow: hidden;
   white-space: nowrap;
   margin-left: 50px;

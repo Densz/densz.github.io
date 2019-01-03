@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const mobiles = styles => {
+export const mobiles = (styles: string) => {
   return `
     @media (max-width: 577px) {
       ${styles}
@@ -8,7 +8,7 @@ export const mobiles = styles => {
   `;
 };
 
-export const tablets = styles => {
+export const tablets = (styles: string) => {
   return `
     @media (max-width: 769px) {
       ${styles}

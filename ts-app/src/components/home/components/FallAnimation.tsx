@@ -1,14 +1,30 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import posed from 'react-pose';
-import styled from 'styled-components';
+import styled from 'src/styles/styled-components';
 import logo from '../../../assets/images/Denis.png';
 
-class FallAnimation extends Component {
-  state = {
+interface IState {
+  logoAnimation: boolean;
+}
+
+class FallAnimation extends React.Component<{}, IState> {
+  public state = {
     logoAnimation: false,
   };
 
-  componentDidMount() {
+  public render() {
+    const { logoAnimation } = this.state;
+
+    return (
+      <SWrapper>
+        <AWrapperImage pose={logoAnimation ? 'visible' : 'hidden'}>
+          <img src={logo} alt="logo" />
+        </AWrapperImage>
+      </SWrapper>
+    );
+  }
+
+  public componentDidMount() {
     this.setState(state => ({
       ...state,
       logoAnimation: !state.logoAnimation,
@@ -19,18 +35,6 @@ class FallAnimation extends Component {
         logoAnimation: !state.logoAnimation,
       }));
     }, 3000);
-  }
-
-  render() {
-    const { logoAnimation } = this.state;
-
-    return (
-      <SWrapper>
-        <AWrapperImage pose={logoAnimation ? 'visible' : 'hidden'}>
-          <img src={logo} alt="logo" />
-        </AWrapperImage>
-      </SWrapper>
-    );
   }
 }
 
@@ -53,9 +57,9 @@ const imageDropProps = {
   visible: {
     bottom: 0,
     transition: {
-      type: 'spring',
-      stiffness: 300,
       damping: 15,
+      stiffness: 300,
+      type: 'spring',
     },
   },
 };

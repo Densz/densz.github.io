@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import styled from 'styled-components';
+import * as React from 'react';
+import styled from 'src/styles/styled-components';
 import colors from '../../../constants/colors';
 
 import Hypertube from '../../../assets/images/hypertube.gif';
@@ -12,7 +12,7 @@ const ProjectsList = [
     title: 'Hypertube - Streaming website',
     img: Hypertube,
     link: {
-      website: null,
+      website: '',
       github: 'https://github.com/Densz/hypertube',
     },
     description:
@@ -23,7 +23,7 @@ const ProjectsList = [
     title: 'Matcha - Dating Web App',
     img: Matcha,
     link: {
-      website: null,
+      website: '',
       github: 'https://github.com/Densz/matcha',
     },
     description:
@@ -34,8 +34,8 @@ const ProjectsList = [
     title: 'Luton Airport ChatBot',
     img: Chatbot,
     link: {
-      website: null,
-      github: null,
+      website: '',
+      github: '',
     },
     description:
       'Winner of the HEC Challenge - Data science with Chat Bot on Facebook Messenger in partnership with Luton Airport (London, UK).',
@@ -43,24 +43,13 @@ const ProjectsList = [
   },
 ];
 
-class Projects extends Component {
-  renderProjects(title, img, link, description, li) {
-    return (
-      <SWrapperRow key={description}>
-        <SImageWrapper>
-          <SProjectImage src={img} alt={description} />
-        </SImageWrapper>
-        <SDescriptionWrapper>
-          <STitle>{title}</STitle>
-          <SDescription>{description}</SDescription>
-          {link.github && <SLink href={link.github}>Github link</SLink>}
-          {link.website && <SLink href={link.website}>{link.website}</SLink>}
-        </SDescriptionWrapper>
-      </SWrapperRow>
-    );
-  }
+interface ILink {
+  github?: string;
+  website?: string;
+}
 
-  render() {
+class Projects extends React.Component<{}, {}> {
+  public render() {
     return (
       <SWrapper>
         {ProjectsList.map(data => {
@@ -73,6 +62,28 @@ class Projects extends Component {
           );
         })}
       </SWrapper>
+    );
+  }
+
+  private renderProjects(
+    title: string,
+    img: string,
+    link: ILink,
+    description: string,
+    li: string[]
+  ) {
+    return (
+      <SWrapperRow key={description}>
+        <SImageWrapper>
+          <SProjectImage src={img} alt={description} />
+        </SImageWrapper>
+        <SDescriptionWrapper>
+          <STitle>{title}</STitle>
+          <SDescription>{description}</SDescription>
+          {link.github && <SLink href={link.github}>Github link</SLink>}
+          {link.website && <SLink href={link.website}>{link.website}</SLink>}
+        </SDescriptionWrapper>
+      </SWrapperRow>
     );
   }
 }

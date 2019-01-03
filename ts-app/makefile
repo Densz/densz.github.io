@@ -1,9 +1,9 @@
 #!make
 start:
-	npm start
+	yarn start
 
 predeploy:
 	rm -rf ../static
-	npm run build
+	yarn run build
 	mv ./build/* ../
 	rm -rf ./build
