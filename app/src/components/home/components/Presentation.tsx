@@ -115,6 +115,7 @@ const ATextWrapper = styled(posed.div(textPose))`
 
 const SText = styled.p`
   font-size: 2em;
+  font-family: 'Quicksand', sans-serif;
   ${tablets(`
     font-size: 1.5em;
   `)}
