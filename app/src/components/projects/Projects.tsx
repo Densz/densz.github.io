@@ -48,8 +48,19 @@ interface ILink {
   github?: string;
   website?: string;
 }
+interface INavigateState {
+  redirecting: boolean;
+  route: string;
+}
 
-class Projects extends React.Component<{}, {}> {
+interface IProps {
+  outroAnimationDone: (() => void);
+  navigateState: {
+    [key: string]: INavigateState;
+  };
+}
+
+class Projects extends React.Component<IProps, {}> {
   public render() {
     return (
       <SWrapper>
@@ -65,6 +76,15 @@ class Projects extends React.Component<{}, {}> {
       </SWrapper>
     );
   }
+
+  public componentDidUpdate = (prevProps: IProps) => {
+    if (
+      !prevProps.navigateState.redirecting &&
+      this.props.navigateState.redirecting
+    ) {
+      this.props.outroAnimationDone();
+    }
+  };
 
   private renderProjects(
     title: string,
@@ -98,7 +118,7 @@ const SWrapper = styled.div`
   position: relative;
   width: 100%;
   height: auto;
-  background-color: ${colors.white};
+  background-color: ${colors.grey};
   padding-top: 150px;
 `;
 

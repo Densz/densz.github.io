@@ -1,8 +1,22 @@
 import * as React from 'react';
 import styled from 'src/styles/styled-components';
 
+interface IState {
+  redirecting: boolean;
+  route?: string;
+}
+
+interface IProps {
+  location: {
+    pathname: string;
+  };
+  history: {
+    push: ((path: string) => void);
+  };
+}
+
 export const PageWithNavHOC = (WrappedComponent: any) =>
-  class Nav extends React.Component {
+  class Nav extends React.Component<IProps, IState> {
     public state = {
       redirecting: false,
       route: '',
@@ -14,37 +28,59 @@ export const PageWithNavHOC = (WrappedComponent: any) =>
           <SNavWrapper>
             <SLinkWrapper>
               <div>
-                <button onClick={this.navigateTo} value="/">
+                <SNavButton onClick={this.navigateTo} value="/">
                   Home
-                </button>
+                </SNavButton>
               </div>
               <div>
-                <button onClick={this.navigateTo} value="/projects">
+                <SNavButton onClick={this.navigateTo} value="/projects">
                   Projects
-                </button>
+                </SNavButton>
               </div>
               <div>
-                <a href="https://github.com/Densz" target="_blank">
+                <SNavAhref href="https://github.com/Densz" target="_blank">
                   Github
-                </a>
+                </SNavAhref>
               </div>
               <div>
-                <a href="https://twitter.com/Denis_Zheng" target="_blank">
+                <SNavAhref
+                  href="https://twitter.com/Denis_Zheng"
+                  target="_blank"
+                >
                   Twitter
-                </a>
+                </SNavAhref>
               </div>
             </SLinkWrapper>
           </SNavWrapper>
-          <WrappedComponent navigateState={this.state} />
+          <WrappedComponent
+            navigateState={this.state}
+            outroAnimationDone={this.outroAnimationDone}
+          />
         </>
       );
     }
 
+    private outroAnimationDone = () => {
+      if (this.state.redirecting) {
+        this.setState(
+          state => ({
+            ...state,
+            redirecting: false,
+          }),
+          () => {
+            this.props.history.push(this.state.route);
+          }
+        );
+      }
+    };
+
     private navigateTo = (event: any) => {
+      const value = event.target.value;
+
       this.setState(state => ({
         ...state,
-        redirecting: true,
-        route: event.target.value,
+        redirecting: this.props.location.pathname !== value,
+        route: value,
       }));
     };
   };
@@ -66,4 +102,22 @@ const SLinkWrapper = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
+`;
+
+const SNavButton = styled.button`
+  padding: 0;
+  color: black;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 1.2em;
+  font-family: 'Quicksand', sans-serif;
+  text-decoration: underline;
+`;
+
+const SNavAhref = styled.a`
+  color: black;
+  font-size: 1.2em;
+  font-family: 'Quicksand', sans-serif;
+  text-decoration: underline;
 `;

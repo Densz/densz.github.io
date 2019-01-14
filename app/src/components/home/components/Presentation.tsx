@@ -2,7 +2,7 @@ import * as React from 'react';
 import posed from 'react-pose';
 import styled from 'src/styles/styled-components';
 
-import Photo from '../../../assets/images/hypertube.gif';
+import Photo from '../../../assets/images/profile.jpg';
 import colors from '../../../constants/colors';
 import { STitle, tablets } from '../../../styles/common';
 
@@ -17,6 +17,7 @@ interface INavigateState {
 }
 
 interface IProps {
+  outroAnimationDone: (() => void);
   navigateState: {
     [key: string]: INavigateState;
   };
@@ -26,6 +27,35 @@ class Presentation extends React.Component<IProps, IState> {
   public state = {
     imageAnimation: false,
     textAnimation: false,
+  };
+
+  public componentDidUpdate = (prevProps: IProps) => {
+    if (
+      !prevProps.navigateState.redirecting &&
+      this.props.navigateState.redirecting
+    ) {
+      this.setState(
+        state => ({
+          ...state,
+          textAnimation: false,
+        }),
+        () => {
+          setTimeout(() => {
+            this.setState(
+              state => ({
+                ...state,
+                imageAnimation: false,
+              }),
+              () => {
+                setTimeout(() => {
+                  this.props.outroAnimationDone();
+                }, 400);
+              }
+            );
+          }, 500);
+        }
+      );
+    }
   };
 
   public componentDidMount = () => {
@@ -69,8 +99,11 @@ export default Presentation;
 
 const imagePose = {
   hidden: {
-    y: -400,
+    y: -700,
     opacity: 0,
+    transition: {
+      duration: 400,
+    },
   },
   visible: {
     y: 0,
@@ -84,6 +117,9 @@ const imagePose = {
 const textPose = {
   hidden: {
     width: 0,
+    transition: {
+      duration: 500,
+    },
   },
   visible: {
     width: 'auto',

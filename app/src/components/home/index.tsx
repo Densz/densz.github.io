@@ -8,15 +8,20 @@ interface INavigateState {
 }
 
 interface IProps {
+  location: any;
+  outroAnimationDone: (() => void);
   navigateState: {
     [key: string]: INavigateState;
   };
 }
 
-const Home = ({ navigateState }: IProps) => {
+const Home = ({ navigateState, outroAnimationDone }: IProps) => {
   return (
     <>
-      <Presentation navigateState={navigateState} />
+      <Presentation
+        navigateState={navigateState}
+        outroAnimationDone={outroAnimationDone}
+      />
     </>
   );
 };
