@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import colors from '../constants/colors';
 
 export const mobiles = (styles: string) => {
   return `
@@ -35,7 +36,8 @@ export const SDescription = styled.p`
 export const SLink = styled.a`
   font-family: 'Lekton', sans-serif;
   font-size: 1.4em;
-  text-decoration: none;
+  text-decoration: underline;
+  color: ${colors.white};
   ${tablets(`
     font-size: 1em;
   `)};

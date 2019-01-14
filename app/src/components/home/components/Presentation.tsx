@@ -86,7 +86,7 @@ class Presentation extends React.Component<IProps, IState> {
           pose={imageAnimation ? 'visible' : 'hidden'}
         />
         <ATextWrapper pose={textAnimation ? 'visible' : 'hidden'}>
-          <STitle>Denis ZHENG</STitle>
+          <STitle>Denis.Z</STitle>
           <SText>Javascript Freelance</SText>
           <SText>React Native - React JS - Node JS - GraphQL</SText>
         </ATextWrapper>
@@ -133,7 +133,7 @@ const SWrapper = styled.div`
   position: relative;
   width: 100%;
   height: 100vh;
-  background-color: ${colors.grey};
+  background-color: ${colors.black};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -155,6 +155,7 @@ const ATextWrapper = styled(posed.div(textPose))`
   overflow: hidden;
   white-space: nowrap;
   margin-left: 50px;
+  color: white;
   ${tablets(`
     white-space: initial;
   `)}
@@ -163,6 +164,7 @@ const ATextWrapper = styled(posed.div(textPose))`
 const SText = styled.p`
   font-size: 2em;
   font-family: 'Quicksand', sans-serif;
+  color: white;
   ${tablets(`
     font-size: 1.5em;
   `)}

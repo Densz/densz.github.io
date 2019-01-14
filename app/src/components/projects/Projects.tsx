@@ -118,7 +118,7 @@ const SWrapper = styled.div`
   position: relative;
   width: 100%;
   height: auto;
-  background-color: ${colors.grey};
+  background-color: ${colors.black};
   padding-top: 150px;
 `;
 
@@ -148,6 +148,7 @@ const SDescriptionWrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin-left: 50px;
+  color: ${colors.white};
   ${tablets(`
     margin-left: 0;
     text-align: center;

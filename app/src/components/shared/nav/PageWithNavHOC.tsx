@@ -1,5 +1,15 @@
 import * as React from 'react';
-import styled from 'src/styles/styled-components';
+import {
+  SNavWrapper,
+  SNavButton,
+  SLeftLinkContainer,
+  SRightLinkContainer,
+  SSocialLinksWrapper,
+  SSocialContainer,
+  SSocialImage,
+} from './styles';
+import github from '../../../assets/icon/github.png';
+import twitter from '../../../assets/icon/twitter.png';
 
 interface IState {
   redirecting: boolean;
@@ -26,31 +36,32 @@ export const PageWithNavHOC = (WrappedComponent: any) =>
       return (
         <>
           <SNavWrapper>
-            <SLinkWrapper>
-              <div>
-                <SNavButton onClick={this.navigateTo} value="/">
-                  Home
-                </SNavButton>
-              </div>
-              <div>
-                <SNavButton onClick={this.navigateTo} value="/projects">
-                  Projects
-                </SNavButton>
-              </div>
-              <div>
-                <SNavAhref href="https://github.com/Densz" target="_blank">
-                  Github
-                </SNavAhref>
-              </div>
-              <div>
-                <SNavAhref
-                  href="https://twitter.com/Denis_Zheng"
-                  target="_blank"
-                >
-                  Twitter
-                </SNavAhref>
-              </div>
-            </SLinkWrapper>
+            {/* -------------- */
+            /* -- TOP MENU -- */
+            /* -------------- */}
+            <SLeftLinkContainer>
+              <SNavButton onClick={this.navigateTo} value="/">
+                DZ -
+              </SNavButton>
+            </SLeftLinkContainer>
+            <SRightLinkContainer>
+              <SNavButton onClick={this.navigateTo} value="/projects">
+                - PROJECTS
+              </SNavButton>
+            </SRightLinkContainer>
+            {/* -------------------------- */
+            /* ------- SOCIAL LINKS ------ */
+            /* --------------------------- */}
+            <SSocialLinksWrapper>
+              <SSocialContainer href="https://github.com/Densz" target="_blank">
+                <SSocialImage src={github} alt="github" />
+                <SSocialImage src={github} alt="github" />
+              </SSocialContainer>
+              <SSocialContainer href="https://github.com/Densz" target="_blank">
+                <SSocialImage src={twitter} alt="twitter" />
+                <SSocialImage src={twitter} alt="twitter" />
+              </SSocialContainer>
+            </SSocialLinksWrapper>
           </SNavWrapper>
           <WrappedComponent
             navigateState={this.state}
@@ -86,38 +97,3 @@ export const PageWithNavHOC = (WrappedComponent: any) =>
   };
 
 export default PageWithNavHOC;
-
-const SNavWrapper = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 100px;
-  z-index: 1;
-  display: flex;
-  justify-content: flex-end;
-`;
-
-const SLinkWrapper = styled.div`
-  width: 50%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-evenly;
-`;
-
-const SNavButton = styled.button`
-  padding: 0;
-  color: black;
-  border: none;
-  background: none;
-  cursor: pointer;
-  font-size: 1.2em;
-  font-family: 'Quicksand', sans-serif;
-  text-decoration: underline;
-`;
-
-const SNavAhref = styled.a`
-  color: black;
-  font-size: 1.2em;
-  font-family: 'Quicksand', sans-serif;
-  text-decoration: underline;
-`;
