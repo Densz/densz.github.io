@@ -1,14 +1,24 @@
 import * as React from 'react';
+import PageWithNavHOC from '../shared/nav/PageWithNavHOC';
 import Presentation from './components/Presentation';
-import Projects from './components/Projects';
 
-const Home = () => {
+interface INavigateState {
+  redirecting: boolean;
+  route: string;
+}
+
+interface IProps {
+  navigateState: {
+    [key: string]: INavigateState;
+  };
+}
+
+const Home = ({ navigateState }: IProps) => {
   return (
     <>
-      <Presentation />
-      <Projects />
+      <Presentation navigateState={navigateState} />
     </>
   );
 };
 
-export default Home;
+export default PageWithNavHOC(Home);

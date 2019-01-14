@@ -1,11 +1,12 @@
 import * as React from 'react';
 import styled from 'src/styles/styled-components';
-import colors from '../../../constants/colors';
+import PageWithNavigationHOC from '../shared/nav/PageWithNavHOC';
+import colors from '../../constants/colors';
 
-import Hypertube from '../../../assets/images/hypertube.gif';
-import Matcha from '../../../assets/images/matcha.gif';
-import Chatbot from '../../../assets/images/chatbot.gif';
-import { tablets, STitle, SDescription, SLink } from '../../../styles/common';
+import Hypertube from '../../assets/images/hypertube.gif';
+import Matcha from '../../assets/images/matcha.gif';
+import Chatbot from '../../assets/images/chatbot.gif';
+import { tablets, STitle, SDescription, SLink } from '../../styles/common';
 
 const ProjectsList = [
   {
@@ -88,7 +89,7 @@ class Projects extends React.Component<{}, {}> {
   }
 }
 
-export default Projects;
+export default PageWithNavigationHOC(Projects);
 
 const SWrapper = styled.div`
   display: flex;
@@ -98,7 +99,7 @@ const SWrapper = styled.div`
   width: 100%;
   height: auto;
   background-color: ${colors.white};
-  padding-top: 50px;
+  padding-top: 150px;
 `;
 
 const SWrapperRow = styled.div`

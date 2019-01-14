@@ -2,7 +2,7 @@ import * as React from 'react';
 import posed from 'react-pose';
 import styled from 'src/styles/styled-components';
 
-import Photo from '../../../assets/images/profile.jpg';
+import Photo from '../../../assets/images/hypertube.gif';
 import colors from '../../../constants/colors';
 import { STitle, tablets } from '../../../styles/common';
 
@@ -11,7 +11,18 @@ interface IState {
   textAnimation: boolean;
 }
 
-class Presentation extends React.Component<{}, IState> {
+interface INavigateState {
+  redirecting: boolean;
+  route: string;
+}
+
+interface IProps {
+  navigateState: {
+    [key: string]: INavigateState;
+  };
+}
+
+class Presentation extends React.Component<IProps, IState> {
   public state = {
     imageAnimation: false,
     textAnimation: false,

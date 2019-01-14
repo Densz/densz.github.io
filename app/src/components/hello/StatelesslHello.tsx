@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export interface IProps {
+interface IProps {
   name: string;
   enthusiasmLevel?: number; // ? means optional number
 }
@@ -20,6 +20,6 @@ function Hello({ name, enthusiasmLevel = 1 }: IProps) {
 
 export default Hello;
 
-function getExclamationMarks(numChars: number) {
+function getExclamationMarks(numChars: number): string {
   return Array(numChars + 1).join('!');
 }
