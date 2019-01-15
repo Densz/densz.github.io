@@ -7,9 +7,30 @@ import {
   SSocialLinksWrapper,
   SSocialContainer,
   SSocialImage,
+  SLeftAnimatedUnderline,
+  SRightAnimatedUnderline,
 } from './styles';
 import github from '../../../assets/icon/github.png';
 import twitter from '../../../assets/icon/twitter.png';
+import linkedin from '../../../assets/icon/linkedin.png';
+
+const socials = [
+  {
+    title: 'Github',
+    url: 'https://github.com/Densz',
+    img: github,
+  },
+  {
+    title: 'LinkedIn',
+    url: 'https://github.com/Densz',
+    img: linkedin,
+  },
+  {
+    title: 'Twitter',
+    url: 'https://twitter.com/Denis_Zheng',
+    img: twitter,
+  },
+];
 
 interface IState {
   redirecting: boolean;
@@ -23,6 +44,12 @@ interface IProps {
   history: {
     push: ((path: string) => void);
   };
+}
+
+interface ISocials {
+  title: string;
+  url: string;
+  img: string;
 }
 
 export const PageWithNavHOC = (WrappedComponent: any) =>
@@ -43,24 +70,19 @@ export const PageWithNavHOC = (WrappedComponent: any) =>
               <SNavButton onClick={this.navigateTo} value="/">
                 DZ -
               </SNavButton>
+              <SLeftAnimatedUnderline />
             </SLeftLinkContainer>
             <SRightLinkContainer>
               <SNavButton onClick={this.navigateTo} value="/projects">
                 - PROJECTS
               </SNavButton>
+              <SRightAnimatedUnderline />
             </SRightLinkContainer>
             {/* -------------------------- */
             /* ------- SOCIAL LINKS ------ */
             /* --------------------------- */}
             <SSocialLinksWrapper>
-              <SSocialContainer href="https://github.com/Densz" target="_blank">
-                <SSocialImage src={github} alt="github" />
-                <SSocialImage src={github} alt="github" />
-              </SSocialContainer>
-              <SSocialContainer href="https://github.com/Densz" target="_blank">
-                <SSocialImage src={twitter} alt="twitter" />
-                <SSocialImage src={twitter} alt="twitter" />
-              </SSocialContainer>
+              {socials.map(data => this.renderSocials(data))}
             </SSocialLinksWrapper>
           </SNavWrapper>
           <WrappedComponent
@@ -68,6 +90,15 @@ export const PageWithNavHOC = (WrappedComponent: any) =>
             outroAnimationDone={this.outroAnimationDone}
           />
         </>
+      );
+    }
+
+    private renderSocials({ title, url, img }: ISocials) {
+      return (
+        <SSocialContainer href={url} target="_blank" key={title}>
+          <SSocialImage src={img} alt={title} />
+          <SSocialImage src={img} alt={title} />
+        </SSocialContainer>
       );
     }
 

@@ -36,6 +36,27 @@ export const SNavButton = styled.button`
   text-decoration: none;
 `;
 
+export const SLeftAnimatedUnderline = styled.div`
+  background-color: ${colors.white};
+  width: 0px;
+  height: 3px;
+  transition: width 0.25s;
+  ${SLeftLinkContainer}:hover & {
+    width: 100%;
+  }
+`;
+
+export const SRightAnimatedUnderline = styled.div`
+  background-color: ${colors.white};
+  float: right;
+  width: 0px;
+  height: 3px;
+  transition: width 0.5s;
+  ${SRightLinkContainer}:hover & {
+    width: 100%;
+  }
+`;
+
 /* --------------------------- */
 /* ------- SOCIAL LINKS ------ */
 /* --------------------------- */
