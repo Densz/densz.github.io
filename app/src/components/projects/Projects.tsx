@@ -3,9 +3,9 @@ import styled from 'src/styles/styled-components';
 import PageWithNavigationHOC from '../shared/nav/PageWithNavHOC';
 import colors from '../../constants/colors';
 
-import Hypertube from '../../assets/images/hypertube.gif';
-import Matcha from '../../assets/images/matcha.gif';
-import Chatbot from '../../assets/images/chatbot.gif';
+import Hypertube from '../../assets/images/projects/hypertube.gif';
+import Matcha from '../../assets/images/projects/matcha.gif';
+import Chatbot from '../../assets/images/projects/chatbot.gif';
 import { tablets, STitle, SDescription, SLink } from '../../styles/common';
 
 const ProjectsList = [
