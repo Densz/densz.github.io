@@ -1,15 +1,6 @@
 import styled from 'src/styles/styled-components';
 import colors from '../../../constants/colors';
 
-export const SNavWrapper = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 100vh;
-  z-index: 1;
-  display: flex;
-  justify-content: flex-end;
-`;
-
 /* -------------- */
 /* -- TOP MENU -- */
 /* -------------- */
@@ -17,12 +8,14 @@ export const SRightLinkContainer = styled.div`
   position: absolute;
   top: 20px;
   right: 20px;
+  z-index: 1000;
 `;
 
 export const SLeftLinkContainer = styled.div`
   position: absolute;
   top: 20px;
   left: 20px;
+  z-index: 1000;
 `;
 
 export const SNavButton = styled.button`
@@ -34,6 +27,7 @@ export const SNavButton = styled.button`
   font-size: 1em;
   font-family: 'Quicksand', sans-serif;
   text-decoration: none;
+  z-index: 1000;
 `;
 
 export const SLeftAnimatedUnderline = styled.div`
@@ -41,6 +35,7 @@ export const SLeftAnimatedUnderline = styled.div`
   width: 0px;
   height: 3px;
   transition: width 0.25s;
+  z-index: 1000;
   ${SLeftLinkContainer}:hover & {
     width: 100%;
   }
@@ -52,6 +47,7 @@ export const SRightAnimatedUnderline = styled.div`
   width: 0px;
   height: 3px;
   transition: width 0.5s;
+  z-index: 1000;
   ${SRightLinkContainer}:hover & {
     width: 100%;
   }
@@ -66,6 +62,7 @@ export const SSocialLinksWrapper = styled.div`
   right: 20px;
   display: flex;
   flex-direction: row;
+  z-index: 1000;
 `;
 
 export const SSocialContainer = styled.a`
@@ -80,6 +77,7 @@ export const SSocialContainer = styled.a`
   margin-left: 30px;
   cursor: pointer;
   overflow: hidden;
+  z-index: 1000;
 `;
 
 export const SSocialImage = styled.img`
@@ -87,7 +85,7 @@ export const SSocialImage = styled.img`
   width: 15px;
   height: 15px;
   transition: 0.25s;
-
+  z-index: 1000;
   ${SSocialContainer}:hover & {
     transform: translate(0, -23px);
   }

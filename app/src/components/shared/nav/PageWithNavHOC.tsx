@@ -1,6 +1,5 @@
 import * as React from 'react';
 import {
-  SNavWrapper,
   SNavButton,
   SLeftLinkContainer,
   SRightLinkContainer,
@@ -62,29 +61,27 @@ export const PageWithNavHOC = (WrappedComponent: any) =>
     public render() {
       return (
         <>
-          <SNavWrapper>
-            {/* -------------- */
-            /* -- TOP MENU -- */
-            /* -------------- */}
-            <SLeftLinkContainer>
-              <SNavButton onClick={this.navigateTo} value="/">
-                DZ -
-              </SNavButton>
-              <SLeftAnimatedUnderline />
-            </SLeftLinkContainer>
-            <SRightLinkContainer>
-              <SNavButton onClick={this.navigateTo} value="/projects">
-                - PROJECTS
-              </SNavButton>
-              <SRightAnimatedUnderline />
-            </SRightLinkContainer>
-            {/* -------------------------- */
-            /* ------- SOCIAL LINKS ------ */
-            /* --------------------------- */}
-            <SSocialLinksWrapper>
-              {socials.map(data => this.renderSocials(data))}
-            </SSocialLinksWrapper>
-          </SNavWrapper>
+          {/* -------------- */
+          /* -- TOP MENU -- */
+          /* -------------- */}
+          <SLeftLinkContainer>
+            <SNavButton onClick={this.navigateTo} value="/">
+              DZ -
+            </SNavButton>
+            <SLeftAnimatedUnderline />
+          </SLeftLinkContainer>
+          <SRightLinkContainer>
+            <SNavButton onClick={this.navigateTo} value="/projects">
+              - PROJECTS
+            </SNavButton>
+            <SRightAnimatedUnderline />
+          </SRightLinkContainer>
+          {/* -------------------------- */
+          /* ------- SOCIAL LINKS ------ */
+          /* --------------------------- */}
+          <SSocialLinksWrapper>
+            {socials.map(data => this.renderSocials(data))}
+          </SSocialLinksWrapper>
           <WrappedComponent
             navigateState={this.state}
             outroAnimationDone={this.outroAnimationDone}

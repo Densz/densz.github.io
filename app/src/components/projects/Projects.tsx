@@ -2,47 +2,10 @@ import * as React from 'react';
 import styled from 'src/styles/styled-components';
 import PageWithNavigationHOC from '../shared/nav/PageWithNavHOC';
 import colors from '../../constants/colors';
+import projectsJson from './ProjectsContent';
+import { tablets, SLink } from '../../styles/common';
 
-import Hypertube from '../../assets/images/projects/hypertube.gif';
-import Matcha from '../../assets/images/projects/matcha.gif';
-import Chatbot from '../../assets/images/projects/chatbot.gif';
-import { tablets, STitle, SDescription, SLink } from '../../styles/common';
-
-const ProjectsList = [
-  {
-    title: 'Hypertube - Streaming website',
-    img: Hypertube,
-    link: {
-      website: '',
-      github: 'https://github.com/Densz/hypertube',
-    },
-    description:
-      'PopCornTime Streaming Web Application with BitTorrent protocol.',
-    li: ['React JS', 'Node JS', 'Express JS', 'Mongo DB'],
-  },
-  {
-    title: 'Matcha - Dating Web App',
-    img: Matcha,
-    link: {
-      website: '',
-      github: 'https://github.com/Densz/matcha',
-    },
-    description:
-      'Dating website with like and dislike swipe feature, notifications and real-time chat.',
-    li: ['Node JS', 'Express JS', 'EJS Template', 'Mongo DB', 'Socker.io'],
-  },
-  {
-    title: 'Luton Airport ChatBot',
-    img: Chatbot,
-    link: {
-      website: '',
-      github: '',
-    },
-    description:
-      'Winner of the HEC Challenge - Data science with Chat Bot on Facebook Messenger in partnership with Luton Airport (London, UK).',
-    li: ['Node JS', 'Recast.ai', 'Facebook Messenger API'],
-  },
-];
+const HeightRow = 170;
 
 interface ILink {
   github?: string;
@@ -60,22 +23,48 @@ interface IProps {
   };
 }
 
-class Projects extends React.Component<IProps, {}> {
-  public render() {
-    return (
-      <SWrapper>
-        {ProjectsList.map(data => {
-          return this.renderProjects(
-            data.title,
-            data.img,
-            data.link,
-            data.description,
-            data.li
-          );
-        })}
-      </SWrapper>
-    );
-  }
+interface IState {
+  animationStarted: boolean;
+  positionY: number;
+  index: number;
+}
+
+class Projects extends React.Component<IProps, IState> {
+  public state = {
+    animationStarted: false,
+    positionY: 0,
+    index: 0,
+  };
+
+  public onWheel = (e: any) => {
+    e.preventDefault();
+    const deltaY = e.deltaY; // user.persist()
+    const { animationStarted, index } = this.state;
+    if (animationStarted === false) {
+      if (
+        (index === 0 && deltaY < 0) ||
+        (index === projectsJson.length - 1 && deltaY > 0)
+      ) {
+        return;
+      }
+      this.setState(state => ({
+        ...state,
+        animationStarted: true,
+        positionY:
+          deltaY < 0
+            ? state.positionY + HeightRow
+            : state.positionY - HeightRow,
+        index: deltaY < 0 ? state.index - 1 : state.index + 1,
+      }));
+    }
+  };
+
+  public onAnimationEnd = () => {
+    this.setState(state => ({
+      ...state,
+      animationStarted: false,
+    }));
+  };
 
   public componentDidUpdate = (prevProps: IProps) => {
     if (
@@ -86,23 +75,45 @@ class Projects extends React.Component<IProps, {}> {
     }
   };
 
+  public render() {
+    const { positionY, index } = this.state;
+    return (
+      <SWrapper onWheel={this.onWheel}>
+        <SProjectsWrapper
+          positionY={positionY}
+          onTransitionEnd={this.onAnimationEnd}
+        >
+          {projectsJson.map((data, i) => {
+            return this.renderProjects(
+              data.title,
+              data.link,
+              data.description,
+              data.li,
+              index === i
+            );
+          })}
+        </SProjectsWrapper>
+      </SWrapper>
+    );
+  }
+
   private renderProjects(
     title: string,
-    img: string,
     link: ILink,
     description: string,
-    li: string[]
+    li: string[],
+    selected: boolean
   ) {
     return (
-      <SWrapperRow key={description}>
-        <SImageWrapper>
-          <SProjectImage src={img} alt={description} />
-        </SImageWrapper>
+      <SWrapperRow key={description} selected={selected}>
         <SDescriptionWrapper>
           <STitle>{title}</STitle>
           <SDescription>{description}</SDescription>
-          {link.github && <SLink href={link.github}>Github link</SLink>}
-          {link.website && <SLink href={link.website}>{link.website}</SLink>}
+          <SDescription>
+            {li.map((data, i) => `${data} ${i === li.length - 1 ? '' : '~ '}`)}
+          </SDescription>
+          {/* {link.github && <SLink href={link.github}>Github link</SLink>} */}
+          {/* {link.website && <SLink href={link.website}>{link.website}</SLink>} */}
         </SDescriptionWrapper>
       </SWrapperRow>
     );
@@ -112,21 +123,29 @@ class Projects extends React.Component<IProps, {}> {
 export default PageWithNavigationHOC(Projects);
 
 const SWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  width: 100%;
-  height: auto;
-  background-color: ${colors.black};
-  padding-top: 150px;
+  width: 100vw;
+  height: 100vh;
 `;
 
-const SWrapperRow = styled.div`
-  display: flex;
-  flex-direction: row;
-  width: 80%;
-  margin-bottom: 50px;
+const SProjectsWrapper = styled('div')<{ positionY: number }>`
+  position: absolute;
+  margin-left: 20vw;
+  width: 80vw;
+  transition: 0.5s;
+  top: 50%;
+  margin-top: -100px;
+  transform: translateY(${p => p.positionY}px);
+`;
+
+const SWrapperRow = styled('div')<{ selected: boolean }>`
+  width: 60%;
+  height: ${HeightRow}px;
+  transition: 1s;
+  transform: translateX(${p => (p.selected ? 50 : 0)}px)
+    scale(${p => (p.selected ? 1.3 : 1)}) rotate(-5deg);
+  transform-origin: left;
+  opacity: ${p => (p.selected ? 1 : 0.5)};
+  margin-bottom: ${p => (p.selected ? 30 : 0)}px;
   ${tablets(`
     flex-direction: column;
     width: 100%;
@@ -134,23 +153,17 @@ const SWrapperRow = styled.div`
   `)};
 `;
 
-const SImageWrapper = styled.div`
-  flex: 1;
-`;
-
-const SProjectImage = styled.img`
-  width: 90%;
-  margin-left: 5%;
-`;
-
 const SDescriptionWrapper = styled.div`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  margin-left: 50px;
   color: ${colors.white};
-  ${tablets(`
-    margin-left: 0;
-    text-align: center;
-  `)};
+`;
+
+const STitle = styled.h2`
+  font-family: 'Quicksand', sans-serif;
+  font-size: 3em;
+  margin: 0 0 0 0;
+`;
+
+const SDescription = styled.p`
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1em;
 `;
