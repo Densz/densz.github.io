@@ -1,28 +1,54 @@
 export default [
   {
-    title: 'Monimalz - Mobile App',
+    title: 'Monimalz App',
     link: {
-      website: 'http://www.google.fr/',
-      github: 'https://github.com/Densz/hypertube',
+      website: 'https://itunes.apple.com/fr/app/monimalz/id1329548646?mt=8',
+      github: '',
     },
-    description:
-      'PopCornTime Streaming Web Application with BitTorrent protocol.',
-    li: ['Node JS', 'GraphQl'],
+    description: 'Mobile application for a connected Piggy Banks',
+    li: ['React Native', 'Redux-Saga', 'Android', 'iOS'],
   },
   {
-    title: 'Node JS & GraphQL - Boilerplate',
+    title: 'Monimalz eShop',
     link: {
-      website: 'http://www.google.fr/',
-      github: 'https://github.com/Densz/hypertube',
+      website: 'https://monimalz.com/',
+      github: '',
     },
-    description:
-      'PopCornTime Streaming Web Application with BitTorrent protocol.',
-    li: ['Node JS', 'GraphQl'],
+    description: 'Conception of the online website to buy the Monimalz',
+    li: ['React JS', 'SSR', 'Gatsby JS', 'GraphQL'],
   },
   {
-    title: 'Hypertube',
+    title: 'Densz.github.io',
     link: {
-      website: 'http://www.google.fr/',
+      website: 'https://densz.github.io/',
+      github: 'https://github.com/Densz/densz.github.io',
+    },
+    description: 'Personnal Portfolio',
+    li: ['TypeScript', 'React JS'],
+  },
+  {
+    title: 'GraphQL API - Boilerplate',
+    link: {
+      website: '',
+      github: 'https://github.com/Densz/boilerplate-nodejs-graphql',
+    },
+    description: 'Starter kit for all new API Projects using Apollo GraphQL',
+    li: ['Node JS', 'GraphQL', 'PostgreSQL', 'Docker', 'Sequelize'],
+  },
+  {
+    title: 'Lab Postal 2018',
+    link: {
+      website: 'https://www.labpostal.fr/',
+      github: '',
+    },
+    description:
+      'Yellow Innovation event to display all new innovative products by the Innovation Team',
+    li: ['React JS'],
+  },
+  {
+    title: 'Hypertube - 42',
+    link: {
+      website: '',
       github: 'https://github.com/Densz/hypertube',
     },
     description:
@@ -30,53 +56,13 @@ export default [
     li: ['React JS', 'Node JS', 'Express JS', 'Mongo DB'],
   },
   {
-    title: 'Matcha',
+    title: 'Matcha - 42',
     link: {
-      website: 'http://www.google.fr/',
+      website: '',
       github: 'https://github.com/Densz/matcha',
     },
     description:
       'Dating website with like and dislike swipe feature, notifications and real-time chat.',
-    li: ['Node JS', 'Express JS', 'EJS Template', 'Mongo DB', 'Socker.io'],
-  },
-  {
-    title: 'Lorem Ipsum',
-    link: {
-      website: 'http://www.google.fr/',
-      github: 'https://github.com/Densz/matcha',
-    },
-    description:
-      'Winner of the HEC Challenge - Daqwdta science with Chat Bot on Facebook Messenger in partnership with Luton Airport (London, UK).',
-    li: ['Node JS', 'Recast.ai', 'Facebook Messenger API'],
-  },
-  {
-    title: 'Lorem Ipsum',
-    link: {
-      website: 'http://www.google.fr/',
-      github: 'https://github.com/Densz/matcha',
-    },
-    description:
-      'Winner of the HEC Challenge - Data sciqwdqence with Chat Bot on Facebook Messenger in partnership with Luton Airport (London, UK).',
-    li: ['Node JS', 'Recast.ai', 'Facebook Messenger API'],
-  },
-  {
-    title: 'Lorem Ipsum',
-    link: {
-      website: 'http://www.google.fr/',
-      github: 'https://github.com/Densz/matcha',
-    },
-    description:
-      'Winner of the HEC Chalwedqwlenge - Data science with Chat Bot on Facebook Messenger in partnership with Luton Airport (London, UK).',
-    li: ['Node JS', 'Recast.ai', 'Facebook Messenger API'],
-  },
-  {
-    title: 'Lorem Ipsum',
-    link: {
-      website: 'http://www.google.fr/',
-      github: 'https://github.com/Densz/matcha',
-    },
-    description:
-      'Winner of the HEC Challenge - Data qdscience with Chat Bot on Facebook Messenger in partnership with Luton Airport (London, UK).',
-    li: ['Node JS', 'Recast.ai', 'Facebook Messenger API'],
+    li: ['Node JS', 'Express JS', 'EJS Template', 'Mongo DB', 'Socket.io'],
   },
 ];

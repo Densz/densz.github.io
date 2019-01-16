@@ -4,6 +4,7 @@ import PageWithNavigationHOC from '../shared/nav/PageWithNavHOC';
 import colors from '../../constants/colors';
 import projectsJson from './ProjectsContent';
 import { tablets, SLink } from '../../styles/common';
+import SocialButton from 'src/components/shared/SocialButton';
 
 const HeightRow = 170;
 
@@ -107,13 +108,25 @@ class Projects extends React.Component<IProps, IState> {
     return (
       <SWrapperRow key={description} selected={selected}>
         <SDescriptionWrapper>
-          <STitle>{title}</STitle>
-          <SDescription>{description}</SDescription>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+            }}
+          >
+            <STitle>{title}</STitle>
+            <SocialButton type="github" alt="test" url="http://www.google.fr" />
+            <SocialButton
+              type="twitter"
+              alt="test"
+              url="http://www.google.fr"
+            />
+          </div>
           <SDescription>
             {li.map((data, i) => `${data} ${i === li.length - 1 ? '' : '~ '}`)}
           </SDescription>
-          {/* {link.github && <SLink href={link.github}>Github link</SLink>} */}
-          {/* {link.website && <SLink href={link.website}>{link.website}</SLink>} */}
+          <SDescription>{description}</SDescription>
         </SDescriptionWrapper>
       </SWrapperRow>
     );
@@ -131,7 +144,7 @@ const SProjectsWrapper = styled('div')<{ positionY: number }>`
   position: absolute;
   margin-left: 20vw;
   width: 80vw;
-  transition: 0.5s;
+  transition: 1s;
   top: 50%;
   margin-top: -100px;
   transform: translateY(${p => p.positionY}px);

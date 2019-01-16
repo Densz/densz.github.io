@@ -64,29 +64,3 @@ export const SSocialLinksWrapper = styled.div`
   flex-direction: row;
   z-index: 1000;
 `;
-
-export const SSocialContainer = styled.a`
-  position: relative;
-  display: flex;
-  width: 30px;
-  height: 30px;
-  border: 1px solid ${colors.white};
-  border-radius: 50%;
-  align-items: center;
-  flex-direction: column;
-  margin-left: 30px;
-  cursor: pointer;
-  overflow: hidden;
-  z-index: 1000;
-`;
-
-export const SSocialImage = styled.img`
-  padding-top: 8px;
-  width: 15px;
-  height: 15px;
-  transition: 0.25s;
-  z-index: 1000;
-  ${SSocialContainer}:hover & {
-    transform: translate(0, -23px);
-  }
-`;

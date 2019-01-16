@@ -1,36 +1,31 @@
 import * as React from 'react';
+import SocialButton from 'src/components/shared/SocialButton';
 import {
   SNavButton,
   SLeftLinkContainer,
   SRightLinkContainer,
   SSocialLinksWrapper,
-  SSocialContainer,
-  SSocialImage,
   SLeftAnimatedUnderline,
   SRightAnimatedUnderline,
 } from './styles';
-import github from '../../../assets/icon/github.png';
-import twitter from '../../../assets/icon/twitter.png';
-import linkedin from '../../../assets/icon/linkedin.png';
 
 const socials = [
   {
-    title: 'Github',
+    alt: 'Github',
     url: 'https://github.com/Densz',
-    img: github,
+    type: 'github',
   },
   {
-    title: 'LinkedIn',
+    alt: 'LinkedIn',
     url: 'https://github.com/Densz',
-    img: linkedin,
+    type: 'linkedin',
   },
   {
-    title: 'Twitter',
+    alt: 'Twitter',
     url: 'https://twitter.com/Denis_Zheng',
-    img: twitter,
+    type: 'twitter',
   },
 ];
-
 interface IState {
   redirecting: boolean;
   route?: string;
@@ -43,12 +38,6 @@ interface IProps {
   history: {
     push: ((path: string) => void);
   };
-}
-
-interface ISocials {
-  title: string;
-  url: string;
-  img: string;
 }
 
 export const PageWithNavHOC = (WrappedComponent: any) =>
@@ -80,22 +69,15 @@ export const PageWithNavHOC = (WrappedComponent: any) =>
           /* ------- SOCIAL LINKS ------ */
           /* --------------------------- */}
           <SSocialLinksWrapper>
-            {socials.map(data => this.renderSocials(data))}
+            {socials.map(data => (
+              <SocialButton type={data.type} url={data.url} alt={data.alt} />
+            ))}
           </SSocialLinksWrapper>
           <WrappedComponent
             navigateState={this.state}
             outroAnimationDone={this.outroAnimationDone}
           />
         </>
-      );
-    }
-
-    private renderSocials({ title, url, img }: ISocials) {
-      return (
-        <SSocialContainer href={url} target="_blank" key={title}>
-          <SSocialImage src={img} alt={title} />
-          <SSocialImage src={img} alt={title} />
-        </SSocialContainer>
       );
     }
 

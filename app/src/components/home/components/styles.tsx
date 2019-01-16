@@ -39,7 +39,6 @@ export const SWrapper = styled.div`
   position: relative;
   width: 100%;
   height: 100vh;
-  background-color: ${colors.black};
   display: flex;
   justify-content: center;
   align-items: center;
