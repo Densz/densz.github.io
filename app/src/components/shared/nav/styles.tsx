@@ -18,6 +18,13 @@ export const SLeftLinkContainer = styled.div`
   z-index: 1000;
 `;
 
+export const SLeftBottomLinkContainer = styled.div`
+  position: absolute;
+  left: 20px;
+  bottom: 20px;
+  z-index: 1000;
+`;
+
 export const SNavButton = styled.button`
   padding: 0;
   color: ${colors.white};
@@ -37,6 +44,17 @@ export const SLeftAnimatedUnderline = styled.div`
   transition: width 0.25s;
   z-index: 1000;
   ${SLeftLinkContainer}:hover & {
+    width: 100%;
+  }
+`;
+
+export const SLeftBottomAnimatedUnderline = styled.div`
+  background-color: ${colors.white};
+  width: 0px;
+  height: 3px;
+  transition: width 0.25s;
+  z-index: 1000;
+  ${SLeftBottomLinkContainer}:hover & {
     width: 100%;
   }
 `;

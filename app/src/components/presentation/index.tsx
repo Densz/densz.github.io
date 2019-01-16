@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PageWithNavHOC from '../shared/nav/PageWithNavHOC';
-import HomeComponent from './components/Home';
+import Intro from './components/Intro';
 
 interface INavigateState {
   redirecting: boolean;
@@ -15,15 +15,13 @@ interface IProps {
   };
 }
 
-const Home = ({ navigateState, outroAnimationDone }: IProps) => {
+const Presentation = ({ navigateState, outroAnimationDone }: IProps) => {
   return (
-    <>
-      <HomeComponent
-        navigateState={navigateState}
-        outroAnimationDone={outroAnimationDone}
-      />
-    </>
+    <Intro
+      navigateState={navigateState}
+      outroAnimationDone={outroAnimationDone}
+    />
   );
 };
 
-export default PageWithNavHOC(Home);
+export default PageWithNavHOC(Presentation);

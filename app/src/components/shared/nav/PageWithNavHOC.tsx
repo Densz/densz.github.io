@@ -3,10 +3,12 @@ import SocialButton from 'src/components/shared/SocialButton';
 import {
   SNavButton,
   SLeftLinkContainer,
+  SLeftBottomLinkContainer,
   SRightLinkContainer,
   SSocialLinksWrapper,
   SLeftAnimatedUnderline,
   SRightAnimatedUnderline,
+  SLeftBottomAnimatedUnderline,
 } from './styles';
 
 const socials = [
@@ -59,6 +61,14 @@ export const PageWithNavHOC = (WrappedComponent: any) =>
             </SNavButton>
             <SLeftAnimatedUnderline />
           </SLeftLinkContainer>
+
+          <SLeftBottomLinkContainer>
+            <SNavButton onClick={this.navigateTo} value="/presentation">
+              PRESENTATION -
+            </SNavButton>
+            <SLeftBottomAnimatedUnderline />
+          </SLeftBottomLinkContainer>
+
           <SRightLinkContainer>
             <SNavButton onClick={this.navigateTo} value="/projects">
               - PROJECTS
@@ -70,7 +80,12 @@ export const PageWithNavHOC = (WrappedComponent: any) =>
           /* --------------------------- */}
           <SSocialLinksWrapper>
             {socials.map(data => (
-              <SocialButton type={data.type} url={data.url} alt={data.alt} />
+              <SocialButton
+                type={data.type}
+                url={data.url}
+                alt={data.alt}
+                key={data.alt}
+              />
             ))}
           </SSocialLinksWrapper>
           <WrappedComponent

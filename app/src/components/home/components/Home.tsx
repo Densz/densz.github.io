@@ -21,7 +21,7 @@ interface IProps {
   };
 }
 
-class Presentation extends React.Component<IProps, IState> {
+class Home extends React.Component<IProps, IState> {
   public state = {
     imageAnimation: false,
     textAnimation: false,
@@ -93,4 +93,4 @@ class Presentation extends React.Component<IProps, IState> {
   }
 }
 
-export default Presentation;
+export default Home;

@@ -25,6 +25,7 @@ interface IProps {
 }
 
 interface IState {
+  introAnimation: boolean;
   animationStarted: boolean;
   positionY: number;
   index: number;
@@ -32,6 +33,7 @@ interface IState {
 
 class Projects extends React.Component<IProps, IState> {
   public state = {
+    introAnimation: false,
     animationStarted: false,
     positionY: 0,
     index: 0,
@@ -67,21 +69,42 @@ class Projects extends React.Component<IProps, IState> {
     }));
   };
 
+  public componentDidMount() {
+    setTimeout(() => {
+      this.setState(state => ({
+        ...state,
+        introAnimation: true,
+      }));
+    }, 200);
+  }
+
   public componentDidUpdate = (prevProps: IProps) => {
     if (
       !prevProps.navigateState.redirecting &&
       this.props.navigateState.redirecting
     ) {
-      this.props.outroAnimationDone();
+      this.setState(
+        state => ({
+          ...state,
+          introAnimation: false,
+        }),
+        () => {
+          setTimeout(() => {
+            this.props.outroAnimationDone();
+          }, 1500);
+        }
+      );
     }
   };
 
   public render() {
-    const { positionY, index } = this.state;
+    const { introAnimation, positionY, index } = this.state;
+
     return (
       <SWrapper onWheel={this.onWheel}>
         <SProjectsWrapper
           positionY={positionY}
+          introAnimation={introAnimation}
           onTransitionEnd={this.onAnimationEnd}
         >
           {projectsJson.map((data, i) => {
@@ -116,17 +139,41 @@ class Projects extends React.Component<IProps, IState> {
             }}
           >
             <STitle>{title}</STitle>
-            <SocialButton type="github" alt="test" url="http://www.google.fr" />
-            <SocialButton
-              type="twitter"
-              alt="test"
-              url="http://www.google.fr"
-            />
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'center',
+                transition: '1s',
+                opacity: selected ? 1 : 0,
+                transform: `translateX(${selected ? '0' : '400px'})`,
+              }}
+            >
+              <SocialButton
+                type="github"
+                alt="test"
+                url="http://www.google.fr"
+              />
+              <SocialButton
+                type="twitter"
+                alt="test"
+                url="http://www.google.fr"
+              />
+            </div>
           </div>
-          <SDescription>
-            {li.map((data, i) => `${data} ${i === li.length - 1 ? '' : '~ '}`)}
-          </SDescription>
-          <SDescription>{description}</SDescription>
+          <div
+            style={{
+              transition: 'opacity 1s',
+              opacity: selected ? 1 : 0,
+            }}
+          >
+            <STechnoText>
+              {li.map(
+                (data, i) => `${data} ${i === li.length - 1 ? '' : '~ '}`
+              )}
+            </STechnoText>
+            <SDescriptionText>{description}</SDescriptionText>
+          </div>
         </SDescriptionWrapper>
       </SWrapperRow>
     );
@@ -140,14 +187,18 @@ const SWrapper = styled.div`
   height: 100vh;
 `;
 
-const SProjectsWrapper = styled('div')<{ positionY: number }>`
+const SProjectsWrapper = styled('div')<{
+  positionY: number;
+  introAnimation: boolean;
+}>`
   position: absolute;
   margin-left: 20vw;
   width: 80vw;
-  transition: 1s;
   top: 50%;
   margin-top: -100px;
-  transform: translateY(${p => p.positionY}px);
+  transition: 1.5s;
+  transform: translateX(${p => (!p.introAnimation ? '100vw' : '0')})
+    translateY(${p => (!p.introAnimation ? '-100vh' : `${p.positionY}px`)});
 `;
 
 const SWrapperRow = styled('div')<{ selected: boolean }>`
@@ -176,7 +227,12 @@ const STitle = styled.h2`
   margin: 0 0 0 0;
 `;
 
-const SDescription = styled.p`
+const SDescriptionText = styled.p`
   font-family: 'Quicksand', sans-serif;
   font-size: 1em;
+`;
+
+const STechnoText = styled.p`
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1.3em;
 `;
