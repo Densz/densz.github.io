@@ -6,6 +6,7 @@ import colors from '../../constants/colors';
 import github from '../../assets/icon/github.png';
 import twitter from '../../assets/icon/twitter.png';
 import linkedin from '../../assets/icon/linkedin.png';
+import website from '../../assets/icon/website.png';
 
 interface IProps {
   type: string;
@@ -25,6 +26,8 @@ const SocialButton = ({ type, url, alt }: IProps) => {
     case 'twitter':
       img = twitter;
       break;
+    case 'website':
+      img = website;
     default:
       break;
   }
