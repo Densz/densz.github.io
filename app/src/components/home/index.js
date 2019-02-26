@@ -4,12 +4,10 @@ import HomeComponent from './components/Home';
 
 const Home = ({ navigateState, outroAnimationDone }) => {
   return (
-    <>
-      <HomeComponent
-        navigateState={navigateState}
-        outroAnimationDone={outroAnimationDone}
-      />
-    </>
+    <HomeComponent
+      navigateState={navigateState}
+      outroAnimationDone={outroAnimationDone}
+    />
   );
 };
 
