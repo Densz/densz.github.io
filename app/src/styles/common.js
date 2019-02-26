@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import colors from '../constants/colors';
 
-export const mobiles = (styles: string) => {
+export const mobiles = styles => {
   return `
     @media (max-width: 577px) {
       ${styles}
@@ -9,7 +9,7 @@ export const mobiles = (styles: string) => {
   `;
 };
 
-export const tablets = (styles: string) => {
+export const tablets = styles => {
   return `
     @media (max-width: 769px) {
       ${styles}

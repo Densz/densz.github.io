@@ -6,22 +6,9 @@ import {
   SDescriptionText,
   STechnoText,
 } from './styles';
-import SocialButton from 'src/components/shared/SocialButton';
+import SocialButton from '../shared/SocialButton';
 
-interface ILink {
-  github?: string;
-  website?: string;
-}
-
-interface IProps {
-  title: string;
-  link: ILink;
-  description: string;
-  li: string[];
-  selected: boolean;
-}
-
-const ProjectRow = ({ title, link, description, li, selected }: IProps) => {
+const ProjectRow = ({ title, link, description, li, selected }) => {
   return (
     <SWrapperRow key={description} selected={selected}>
       <SDescriptionWrapper>

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Projects from '../components/projects/Projects';
 
-const ProjectsPage = (props: any) => {
+const ProjectsPage = props => {
   return <Projects {...props} />;
 };
 

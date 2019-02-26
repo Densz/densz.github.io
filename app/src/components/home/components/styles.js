@@ -1,6 +1,5 @@
-import styled from 'src/styles/styled-components';
+import styled from 'styled-components';
 import posed from 'react-pose';
-import colors from '../../../constants/colors';
 import { tablets } from '../../../styles/common';
 
 const imagePose = {

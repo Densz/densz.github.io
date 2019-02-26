@@ -1,20 +1,14 @@
 import * as React from 'react';
 
-import styled from 'src/styles/styled-components';
-import colors from '../../constants/colors';
+import styled from 'styled-components';
 
+import colors from '../../constants/colors';
 import github from '../../assets/icon/github.png';
 import twitter from '../../assets/icon/twitter.png';
 import linkedin from '../../assets/icon/linkedin.png';
 import website from '../../assets/icon/website.png';
 
-interface IProps {
-  type: string;
-  url: string;
-  alt: string;
-}
-
-const SocialButton = ({ type, url, alt }: IProps) => {
+const SocialButton = ({ type, url, alt }) => {
   let img = null;
   switch (type) {
     case 'github':
@@ -28,6 +22,7 @@ const SocialButton = ({ type, url, alt }: IProps) => {
       break;
     case 'website':
       img = website;
+      break;
     default:
       break;
   }

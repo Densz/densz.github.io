@@ -1,18 +1,14 @@
 import * as React from 'react';
 import posed from 'react-pose';
-import styled from 'src/styles/styled-components';
+import styled from 'styled-components';
 import logo from '../../../assets/images/Denis.png';
 
-interface IState {
-  logoAnimation: boolean;
-}
-
-class FallAnimation extends React.Component<{}, IState> {
-  public state = {
+class FallAnimation extends React.Component {
+  state = {
     logoAnimation: false,
   };
 
-  public render() {
+  render() {
     const { logoAnimation } = this.state;
 
     return (
@@ -24,7 +20,7 @@ class FallAnimation extends React.Component<{}, IState> {
     );
   }
 
-  public componentDidMount() {
+  componentDidMount() {
     this.setState(state => ({
       ...state,
       logoAnimation: !state.logoAnimation,

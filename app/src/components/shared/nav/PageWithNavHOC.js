@@ -1,5 +1,5 @@
 import * as React from 'react';
-import SocialButton from 'src/components/shared/SocialButton';
+import SocialButton from '../../shared/SocialButton';
 import {
   SNavButton,
   SLeftLinkContainer,
@@ -28,28 +28,15 @@ const socials = [
     type: 'twitter',
   },
 ];
-interface IState {
-  redirecting: boolean;
-  route?: string;
-}
 
-interface IProps {
-  location: {
-    pathname: string;
-  };
-  history: {
-    push: ((path: string) => void);
-  };
-}
-
-export const PageWithNavHOC = (WrappedComponent: any) =>
-  class Nav extends React.Component<IProps, IState> {
-    public state = {
+export const PageWithNavHOC = WrappedComponent =>
+  class Nav extends React.Component {
+    state = {
       redirecting: false,
       route: '',
     };
 
-    public render() {
+    render() {
       return (
         <>
           {/* -------------- */
@@ -96,7 +83,7 @@ export const PageWithNavHOC = (WrappedComponent: any) =>
       );
     }
 
-    private outroAnimationDone = () => {
+    outroAnimationDone = () => {
       if (this.state.redirecting) {
         this.setState(
           state => ({
@@ -110,7 +97,7 @@ export const PageWithNavHOC = (WrappedComponent: any) =>
       }
     };
 
-    private navigateTo = (event: any) => {
+    navigateTo = event => {
       const value = event.target.value;
 
       this.setState(state => ({

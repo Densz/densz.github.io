@@ -1,17 +1,14 @@
-import styled from 'src/styles/styled-components';
+import styled from 'styled-components';
 import colors from '../../constants/colors';
 import { tablets } from '../../styles/common';
-import { PROJECT_ROW_HEIGHT } from 'src/constants/projects';
+import { PROJECT_ROW_HEIGHT } from '../../constants/projects';
 
 export const SWrapper = styled.div`
   width: 100vw;
   height: 100vh;
 `;
 
-export const SProjectsWrapper = styled('div')<{
-  positionY: number;
-  introAnimation: boolean;
-}>`
+export const SProjectsWrapper = styled.div`
   position: absolute;
   margin-left: 20vw;
   width: 80vw;
@@ -22,7 +19,7 @@ export const SProjectsWrapper = styled('div')<{
     translateY(${p => (!p.introAnimation ? '-100vh' : `${p.positionY}px`)});
 `;
 
-export const SWrapperRow = styled('div')<{ selected: boolean }>`
+export const SWrapperRow = styled.div`
   width: 60%;
   height: ${PROJECT_ROW_HEIGHT}px;
   transition: 1s;
@@ -32,10 +29,10 @@ export const SWrapperRow = styled('div')<{ selected: boolean }>`
   opacity: ${p => (p.selected ? 1 : 0.5)};
   margin-bottom: ${p => (p.selected ? 30 : 0)}px;
   ${tablets(`
-  flex-direction: column;
-  width: 100%;
-  align-items: center;
-`)};
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+  `)};
 `;
 
 export const SDescriptionWrapper = styled.div`

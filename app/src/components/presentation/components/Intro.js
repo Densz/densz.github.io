@@ -1,28 +1,12 @@
 import * as React from 'react';
 import { SWrapper, SResumeWrapper, SResumeText } from './styles';
 
-interface INavigateState {
-  redirecting: boolean;
-  route: string;
-}
-
-interface IProps {
-  outroAnimationDone: (() => void);
-  navigateState: {
-    [key: string]: INavigateState;
-  };
-}
-
-interface IState {
-  introAnimation: boolean;
-}
-
-class Intro extends React.Component<IProps, IState> {
-  public state = {
+class Intro extends React.Component {
+  state = {
     introAnimation: false,
   };
 
-  public componentDidUpdate = (prevProps: IProps) => {
+  componentDidUpdate = prevProps => {
     if (
       !prevProps.navigateState.redirecting &&
       this.props.navigateState.redirecting
@@ -41,7 +25,7 @@ class Intro extends React.Component<IProps, IState> {
     }
   };
 
-  public componentDidMount() {
+  componentDidMount() {
     setTimeout(() => {
       this.setState(state => ({
         ...state,
@@ -50,7 +34,7 @@ class Intro extends React.Component<IProps, IState> {
     }, 200);
   }
 
-  public render() {
+  render() {
     const { introAnimation } = this.state;
 
     return (

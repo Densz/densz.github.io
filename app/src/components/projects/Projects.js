@@ -1,47 +1,19 @@
 import * as React from 'react';
 import PageWithNavigationHOC from '../shared/nav/PageWithNavHOC';
 import projectsJson from './ProjectsContent';
-import { SLink } from '../../styles/common';
 import ProjectRow from './ProjectRow';
-import {
-  SWrapper,
-  SProjectsWrapper,
-  SWrapperRow,
-  SDescriptionWrapper,
-  STitle,
-  SDescriptionText,
-  STechnoText,
-} from './styles';
-import { PROJECT_ROW_HEIGHT } from 'src/constants/projects';
+import { SWrapper, SProjectsWrapper } from './styles';
+import { PROJECT_ROW_HEIGHT } from '../../constants/projects';
 
-interface INavigateState {
-  redirecting: boolean;
-  route: string;
-}
-
-interface IProps {
-  outroAnimationDone: (() => void);
-  navigateState: {
-    [key: string]: INavigateState;
-  };
-}
-
-interface IState {
-  introAnimation: boolean;
-  animationStarted: boolean;
-  positionY: number;
-  index: number;
-}
-
-class Projects extends React.Component<IProps, IState> {
-  public state = {
+class Projects extends React.Component {
+  state = {
     introAnimation: false,
     animationStarted: false,
     positionY: 0,
     index: 0,
   };
 
-  public onWheel = (e: any) => {
+  onWheel = e => {
     e.preventDefault();
     const deltaY = e.deltaY; // user.persist()
     const { animationStarted, index } = this.state;
@@ -64,14 +36,14 @@ class Projects extends React.Component<IProps, IState> {
     }
   };
 
-  public onAnimationEnd = () => {
+  onAnimationEnd = () => {
     this.setState(state => ({
       ...state,
       animationStarted: false,
     }));
   };
 
-  public componentDidMount() {
+  componentDidMount() {
     setTimeout(() => {
       this.setState(state => ({
         ...state,
@@ -80,7 +52,7 @@ class Projects extends React.Component<IProps, IState> {
     }, 200);
   }
 
-  public componentDidUpdate = (prevProps: IProps) => {
+  componentDidUpdate = prevProps => {
     if (
       !prevProps.navigateState.redirecting &&
       this.props.navigateState.redirecting
@@ -99,7 +71,7 @@ class Projects extends React.Component<IProps, IState> {
     }
   };
 
-  public render() {
+  render() {
     const { introAnimation, positionY, index } = this.state;
 
     return (

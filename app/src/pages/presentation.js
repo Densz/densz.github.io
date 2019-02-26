@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Presentation from '../components/presentation/';
+import Presentation from '../components/presentation';
 
-const PresentationPage = (props: any) => {
+const PresentationPage = props => {
   return <Presentation {...props} />;
 };
 

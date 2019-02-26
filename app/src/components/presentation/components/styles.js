@@ -1,6 +1,5 @@
-import styled from 'src/styles/styled-components';
+import styled from 'styled-components';
 import colors from '../../../constants/colors';
-import { tablets } from '../../../styles/common';
 
 export const SWrapper = styled.div`
   position: relative;
@@ -13,7 +12,7 @@ export const SWrapper = styled.div`
   align-items: center;
 `;
 
-export const SResumeWrapper = styled('div')<{ introAnimation: boolean }>`
+export const SResumeWrapper = styled.div`
   width: 80%;
   max-width: 600px;
   transition: 1s;

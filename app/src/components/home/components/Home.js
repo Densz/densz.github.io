@@ -4,30 +4,13 @@ import Photo from '../../../assets/images/profile.jpg';
 import { STitle } from '../../../styles/common';
 import { SWrapper, AImage, ATextWrapper, SText } from './styles';
 
-interface IState {
-  imageAnimation: boolean;
-  textAnimation: boolean;
-}
-
-interface INavigateState {
-  redirecting: boolean;
-  route: string;
-}
-
-interface IProps {
-  outroAnimationDone: (() => void);
-  navigateState: {
-    [key: string]: INavigateState;
-  };
-}
-
-class Home extends React.Component<IProps, IState> {
-  public state = {
+class Home extends React.Component {
+  state = {
     imageAnimation: false,
     textAnimation: false,
   };
 
-  public componentDidUpdate = (prevProps: IProps) => {
+  componentDidUpdate = prevProps => {
     if (
       !prevProps.navigateState.redirecting &&
       this.props.navigateState.redirecting
@@ -56,7 +39,7 @@ class Home extends React.Component<IProps, IState> {
     }
   };
 
-  public componentDidMount = () => {
+  componentDidMount = () => {
     this.setState(
       state => ({
         ...state,
@@ -73,7 +56,7 @@ class Home extends React.Component<IProps, IState> {
     );
   };
 
-  public render() {
+  render() {
     const { imageAnimation, textAnimation } = this.state;
 
     return (
