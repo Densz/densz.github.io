@@ -58,7 +58,7 @@ export const SSocialContainer = styled.a`
   align-items: center;
   flex-direction: column;
   margin-left: 30px;
-  cursor: pointer;
+  cursor: none;
   overflow: hidden;
   z-index: 1000;
 `;

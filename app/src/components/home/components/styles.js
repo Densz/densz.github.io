@@ -1,38 +1,5 @@
 import styled from 'styled-components';
-import posed from 'react-pose';
 import { tablets } from '../../../styles/common';
-
-const imagePose = {
-  hidden: {
-    y: -700,
-    opacity: 0,
-    transition: {
-      duration: 400,
-    },
-  },
-  visible: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      duration: 1000,
-    },
-  },
-};
-
-const textPose = {
-  hidden: {
-    width: 0,
-    transition: {
-      duration: 500,
-    },
-  },
-  visible: {
-    width: 'auto',
-    transition: {
-      duration: 500,
-    },
-  },
-};
 
 export const SWrapper = styled.div`
   position: relative;
@@ -46,19 +13,22 @@ export const SWrapper = styled.div`
   `)}
 `;
 
-export const AImage = styled(posed.img(imagePose))`
+export const AImage = styled.img`
   width: 300px;
   height: 300px;
   border-radius: 50%;
+  opacity: 1;
   ${tablets(`
     margin-left: 20px;
   `)}
 `;
 
-export const ATextWrapper = styled(posed.div(textPose))`
+export const ATextWrapper = styled.div`
   overflow: hidden;
   white-space: nowrap;
   margin-left: 50px;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 2em;
   color: white;
   ${tablets(`
     white-space: initial;
@@ -66,8 +36,8 @@ export const ATextWrapper = styled(posed.div(textPose))`
 `;
 
 export const SText = styled.p`
-  font-size: 2em;
   font-family: 'Quicksand', sans-serif;
+  font-size: 2em;
   color: white;
   ${tablets(`
     font-size: 1.5em;

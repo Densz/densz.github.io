@@ -1,75 +1,61 @@
 import * as React from 'react';
-
+import { TweenLite, TimelineLite } from 'gsap';
 import Photo from '../../../assets/images/profile.jpg';
-import { STitle } from '../../../styles/common';
-import { SWrapper, AImage, ATextWrapper, SText } from './styles';
+import { SWrapper, AImage, ATextWrapper } from './styles';
+import Span from '../../shared/AnimatedSpan';
 
 class Home extends React.Component {
-  state = {
-    imageAnimation: false,
-    textAnimation: false,
-  };
+  picture = null;
+  myTween = null;
+
+  titleTween = new TimelineLite();
+  title = [];
+  desc1 = [];
+  desc2 = [];
 
   componentDidUpdate = prevProps => {
     if (
       !prevProps.navigateState.redirecting &&
       this.props.navigateState.redirecting
     ) {
-      this.setState(
-        state => ({
-          ...state,
-          textAnimation: false,
-        }),
-        () => {
-          setTimeout(() => {
-            this.setState(
-              state => ({
-                ...state,
-                imageAnimation: false,
-              }),
-              () => {
-                setTimeout(() => {
-                  this.props.outroAnimationDone();
-                }, 400);
-              }
-            );
-          }, 500);
-        }
-      );
+      this.myTween = TweenLite.to(this.picture, 0.5, {
+        y: '20vh',
+        opacity: 0,
+        onComplete: () => {
+          this.props.outroAnimationDone();
+        },
+      });
     }
   };
 
   componentDidMount = () => {
-    this.setState(
-      state => ({
-        ...state,
-        imageAnimation: true,
-      }),
-      () => {
-        setTimeout(() => {
-          this.setState(state => ({
-            ...state,
-            textAnimation: true,
-          }));
-        }, 1000);
-      }
-    );
+    this.myTween = TweenLite.from(this.picture, 0.5, {
+      y: '-20vh',
+      opacity: 0,
+    });
+    this.titleTween.timeScale(3);
+    this.titleTween
+      .staggerFrom(this.title, 0.2, { autoAlpha: 0, rotation: 90 }, 0.2)
+      .staggerFrom(
+        this.desc1,
+        0.2,
+        { autoAlpha: 0, rotation: 90 },
+        0.2,
+        '-=0.5'
+      )
+      .staggerFrom(this.desc2, 0.2, { autoAlpha: 0, rotation: 90 }, 0.1, '-=2');
   };
 
   render() {
-    const { imageAnimation, textAnimation } = this.state;
-
     return (
-      <SWrapper>
-        <AImage
-          src={Photo}
-          alt="Github Pictures"
-          pose={imageAnimation ? 'visible' : 'hidden'}
-        />
-        <ATextWrapper pose={textAnimation ? 'visible' : 'hidden'}>
-          <STitle>Denis.Z</STitle>
-          <SText>Javascript Freelance</SText>
-          <SText>React Native - React JS - Node JS - GraphQL</SText>
+      <SWrapper ref={ref => (this.picture = ref)}>
+        <AImage src={Photo} alt="Github Pictures" />
+        <ATextWrapper>
+          <Span innerRef={this.title}>Denis.Z</Span>
+          <Span innerRef={this.desc1}>Javascript Freelance</Span>
+          <Span innerRef={this.desc2}>
+            React Native - React JS - Node JS - GraphQL
+          </Span>
         </ATextWrapper>
       </SWrapper>
     );

@@ -31,7 +31,7 @@ export const SNavButton = styled.button`
   color: ${colors.white};
   border: none;
   background: none;
-  cursor: pointer;
+  cursor: none;
   font-size: 1em;
   font-family: 'Quicksand', sans-serif;
   text-decoration: none;
